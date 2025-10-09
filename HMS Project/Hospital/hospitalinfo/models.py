@@ -20,9 +20,9 @@ class Hospital(models.Model):
 
 class Department(models.Model):
 	dept_id = models.AutoField(primary_key=True)
-	hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE, related_name='departments')
+	hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE, related_name='departments') #Thkis will redirect to the certain deptname for the 
 	name = models.CharField(max_length=100)
-	description = models.Text()
+	description = models.TextField()
 
 #  Model: Doctor
 #  Stores doctor details. Each doctor belongs to a hospital and a department.
@@ -38,4 +38,26 @@ class Doctor(models.Model):
 	availability = models.CharField(max_length=100)  # e.g. "Monday to Friday, 10am–1pm"
 	rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, blank=True)
 
+# Model : `Patient
+# Stores patient details
 
+class Patient(models.Model):
+	patient_id = models.AutoField(primary_key=True)
+	name = models.CharFeild(max_length = 100)
+	gender = models.CharFeild(max_length = 25)
+	dob = models.DateField()
+	email = models.EmailField()
+	password_hash = models.TextField()	
+	phone = models.CharField(max_length=15)
+	address = models.TextField()
+
+# Models : Appointment
+# Stores all the present and upcoming appoinments of all the doctors and patients 
+
+class Appointment(models.Model):
+    appointment_id = models.AutoField(primary_key=True)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='appointments')
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='appointments')
+    appointment_date = models.DateTimeField()
+    status = models.CharField(max_length=50)  # e.g. "Scheduled", "Completed", "Cancelled"
+    notes = models.TextField()
