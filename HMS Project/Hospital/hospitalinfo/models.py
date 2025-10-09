@@ -40,6 +40,7 @@ class Doctor(models.Model):
 
 # Model : `Patient
 # Stores patient details
+<<<<<<< HEAD
 
 class Patient(models.Model):
 	patient_id = models.AutoField(primary_key=True)
@@ -62,4 +63,26 @@ class Appointment(models.Model):
     status = models.CharField(max_length=50)  # e.g. "Scheduled", "Completed", "Cancelled"
     notes = models.TextField()
 
+=======
+>>>>>>> 67feed3cbf6c05532893ff4ac8d094250d952e63
 
+class Patient(models.Model):
+	patient_id = models.AutoField(primary_key=True)
+	name = models.CharFeild(max_length = 100)
+	gender = models.CharFeild(max_length = 25)
+	dob = models.DateField()
+	email = models.EmailField()
+	password_hash = models.TextField()	
+	phone = models.CharField(max_length=15)
+	address = models.TextField()
+
+# Models : Appointment
+# Stores all the present and upcoming appoinments of all the doctors and patients 
+
+class Appointment(models.Model):
+    appointment_id = models.AutoField(primary_key=True)
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='appointments')
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='appointments')
+    appointment_date = models.DateTimeField()
+    status = models.CharField(max_length=50)  # e.g. "Scheduled", "Completed", "Cancelled"
+    notes = models.TextField()
