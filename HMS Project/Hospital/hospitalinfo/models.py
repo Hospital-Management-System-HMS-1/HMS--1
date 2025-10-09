@@ -63,8 +63,7 @@ class Appointment(models.Model):
     status = models.CharField(max_length=50)  # e.g. "Scheduled", "Completed", "Cancelled"
     notes = models.TextField()
 
-=======
->>>>>>> 67feed3cbf6c05532893ff4ac8d094250d952e63
+
 
 class Patient(models.Model):
 	patient_id = models.AutoField(primary_key=True)
@@ -86,3 +85,5 @@ class Appointment(models.Model):
     appointment_date = models.DateTimeField()
     status = models.CharField(max_length=50)  # e.g. "Scheduled", "Completed", "Cancelled"
     notes = models.TextField()
+
+# adding to git 
