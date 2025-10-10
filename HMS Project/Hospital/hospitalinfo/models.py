@@ -44,8 +44,8 @@ class Doctor(models.Model):
 
 class Patient(models.Model):
 	patient_id = models.AutoField(primary_key=True)
-	name = models.CharFeild(max_length = 100)
-	gender = models.CharFeild(max_length = 25)
+	name = models.CharField(max_length = 100)
+	gender = models.CharField(max_length = 25)
 	dob = models.DateField()
 	email = models.EmailField()
 	password_hash = models.TextField()	
@@ -67,8 +67,8 @@ class Appointment(models.Model):
 
 class Patient(models.Model):
 	patient_id = models.AutoField(primary_key=True)
-	name = models.CharFeild(max_length = 100)
-	gender = models.CharFeild(max_length = 25)
+	name = models.CharField(max_length = 100)
+	gender = models.CharField(max_length = 25)
 	dob = models.DateField()
 	email = models.EmailField()
 	password_hash = models.TextField()	
