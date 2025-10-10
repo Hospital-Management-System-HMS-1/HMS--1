@@ -73,3 +73,6 @@ class Patient(models.Model):
 	password_hash = models.TextField()	
 	phone = models.CharField(max_length=15)
 	address = models.TextField()
+
+
+# hi
