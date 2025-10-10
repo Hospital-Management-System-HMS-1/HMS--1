@@ -38,8 +38,7 @@ class Doctor(models.Model):
 	availability = models.CharField(max_length=100)  # e.g. "Monday to Friday, 10am–1pm"
 	rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, blank=True)
 
-# Model : `Patient
-# Stores patient details
+# Model: Patient
 
 
 class Patient(models.Model):
@@ -75,15 +74,5 @@ class Patient(models.Model):
 	phone = models.CharField(max_length=15)
 	address = models.TextField()
 
-# Models : Appointment
-# Stores all the present and upcoming appoinments of all the doctors and patients 
 
-class Appointment(models.Model):
-    appointment_id = models.AutoField(primary_key=True)
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='appointments')
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='appointments')
-    appointment_date = models.DateTimeField()
-    status = models.CharField(max_length=50)  # e.g. "Scheduled", "Completed", "Cancelled"
-    notes = models.TextField()
-
-# adding to git 
+# hi
