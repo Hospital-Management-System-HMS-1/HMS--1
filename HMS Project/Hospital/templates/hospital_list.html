@@ -133,6 +133,7 @@
                     <th>Website</th>
                     <th>Rating</th>
                     <th>Actions</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -152,8 +153,10 @@
                         {% endif %}
                     </td>
                     <td>{{ hospital.rating }}</td>
+                                        <td>
+                        <a href="{% url 'hospitalinfo:update_hospital' hospital.hospital_id %}" class="btn btn-edit">Update</a>
+                    </td>
                     <td>
-                        
                         <a href="{% url 'hospitalinfo:delete' hospital.hospital_id %}" class="btn btn-delete">Delete</a>
                     </td>
                 </tr>

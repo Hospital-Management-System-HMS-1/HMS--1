@@ -6,5 +6,7 @@ app_name='hospitalinfo'
 urlpatterns = [
     path('hospital_list/',hospital_list,name='hospital_list'),
     path('add/',add_hospital,name='add_hospital'),
-    path('delete/<int:hospital_id>/',delete_hospital,name='delete')
+    path('delete/<int:hospital_id>/',delete_hospital,name='delete'),
+	path('update/<int:hospital_id>/', update_hospital, name='update_hospital'),
+
 ]

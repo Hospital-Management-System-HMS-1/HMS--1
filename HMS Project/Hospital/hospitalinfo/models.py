@@ -1,8 +1,5 @@
 from django.db import models
 
-# Model: Hospital
-# This model stores general information about a hospital 
-
 class Hospital(models.Model):
 	hospital_id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=255)
@@ -15,17 +12,11 @@ class Hospital(models.Model):
 	rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 
-# Model: Department
-# Each hospital can have multiple departments (like Cardiology, Neurology, etc.)
-
 class Department(models.Model):
 	dept_id = models.AutoField(primary_key=True)
-	hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE, related_name='departments') #Thkis will redirect to the certain deptname for the 
+	hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE, related_name='departments')  
 	name = models.CharField(max_length=100)
 	description = models.TextField()
-
-#  Model: Doctor
-#  Stores doctor details. Each doctor belongs to a hospital and a department.
 
 class Doctor(models.Model):
 	doctor_id = models.AutoField(primary_key=True)
@@ -35,11 +26,8 @@ class Doctor(models.Model):
 	qualification = models.CharField(max_length=100)
 	specialization = models.CharField(max_length=100)
 	email = models.EmailField()
-	availability = models.CharField(max_length=100)  # e.g. "Monday to Friday, 10am–1pm"
+	availability = models.CharField(max_length=100)
 	rating = models.DecimalField(max_digits=2, decimal_places=1, null=True, blank=True)
-
-# Model: Patient
-
 
 class Patient(models.Model):
 	patient_id = models.AutoField(primary_key=True)
@@ -51,13 +39,18 @@ class Patient(models.Model):
 	phone = models.CharField(max_length=15)
 	address = models.TextField()
 
-# Models : Appointment
-# Stores all the present and upcoming appoinments of all the doctors and patients 
-
 class Appointment(models.Model):
     appointment_id = models.AutoField(primary_key=True)
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='appointments')
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='appointments')
     appointment_date = models.DateTimeField()
-    status = models.CharField(max_length=50)  # e.g. "Scheduled", "Completed", "Cancelled"
+    status = models.CharField(max_length=50)
     notes = models.TextField()
+
+class Specialty(models.Model):
+	specialty_id = models.AutoField(primary_key=True)
+	name = models.CharField(max_length=250)
+
+class DoctorSpecialty(models.Model):
+	doctor = models.ForeignKey(Doctor,on_delete=models.CASCADE)
+	specialty = models.ForeignKey(Specialty,on_delete=models.CASCADE)
