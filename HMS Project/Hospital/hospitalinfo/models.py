@@ -61,18 +61,3 @@ class Appointment(models.Model):
     appointment_date = models.DateTimeField()
     status = models.CharField(max_length=50)  # e.g. "Scheduled", "Completed", "Cancelled"
     notes = models.TextField()
-
-
-
-class Patient(models.Model):
-	patient_id = models.AutoField(primary_key=True)
-	name = models.CharField(max_length = 100)
-	gender = models.CharField(max_length = 25)
-	dob = models.DateField()
-	email = models.EmailField()
-	password_hash = models.TextField()	
-	phone = models.CharField(max_length=15)
-	address = models.TextField()
-
-
-# hi
