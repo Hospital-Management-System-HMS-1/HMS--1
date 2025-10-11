@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeCare Hospital | Home</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+<body>
+
+    
+    <header class="header">
+        <div class="logo-section">
+            {% comment %} <a href="{% url 'get' %}"> {% endcomment %}
+                <img src="{% static 'images/logo.png' %}" alt="LifeCare Logo">
+            {% comment %} </a> {% endcomment %}
+            <h1>LifeCare <span>Hospital</span></h1>
+        </div>
+
+        <nav class="navbar">
+            <a href="{% url 'hospitalinfo:home' %}" class="active">Home</a>
+            <a href="{% url 'hospitalinfo:about' %}">About</a>
+            <a href="{% url 'hospitalinfo:doctors' %}">Our Doctors</a>
+            <a href="{% url 'hospitalinfo:appointment' %}">Appointment</a>
+            <a href="{% url 'hospitalinfo:contact' %}">Contact</a>
+            <a href="{% url 'hospitalinfo:login' %}">
+                <button class="login-btn">Login</button>
+            </a>
+        </nav>
+    </header>
+
+    
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Your Health, Our Priority</h2>
+            <p>Providing trusted healthcare services for you and your family with compassion and excellence.</p>
+            <a href="{% url 'hospitalinfo:appointment' %}" class="hero-btn">Book Appointment</a>
+        </div>
+    </section>
+
+    <section class="excellence-section">
+        <div class="container">
+            <header class="header-excellence">
+                <h1>
+                    <span class="blue-text">Centres Of</span>
+                    <span class="orange-text">Excellence</span>
+                </h1>
+                <p>Combining the best specialists and equipment to provide you nothing short of the best in healthcare.</p>
+            </header>
+
+            <div class="grid-container">
+                <div class="card card-pink">
+                    <div class="icon">❤️</div> 
+                    <p>Cardiology</p>
+                </div>
+
+                <div class="card card-yellow">
+                    <div class="icon">🦴</div> 
+                    <p>Orthopedics</p>
+                </div>
+
+                <div class="card card-green">
+                    <div class="icon">🦠</div> 
+                    <p>Oncology</p>
+                </div>
+
+                <div class="card card-purple">
+                    <div class="icon">🧠</div> 
+                    <p>Neurology</p>
+                </div>
+
+                <div class="card card-cyan">
+                    <div class="icon">🌊</div> 
+                    <p>Gastroenterology</p>
+                </div>
+
+                <div class="card card-light-blue">
+                    <div class="icon">💧</div> 
+                    <p>Nephrology & Urology</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    </body>
+</html>
