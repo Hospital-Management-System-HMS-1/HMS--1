@@ -54,7 +54,4 @@ class Specialty(models.Model):
 class DoctorSpecialty(models.Model):
 	doctor = models.ForeignKey(Doctor,on_delete=models.CASCADE)
 	specialty = models.ForeignKey(Specialty,on_delete=models.CASCADE)
-<<<<<<< HEAD
 
-=======
->>>>>>> 30982e75f4c9f975552e0f07d6aab6228eaa6b44
