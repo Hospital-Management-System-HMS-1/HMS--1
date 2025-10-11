@@ -153,8 +153,8 @@
                     </td>
                     <td>{{ hospital.rating }}</td>
                     <td>
-                        
-                        <a href="{% url 'hospitalinfo:delete' hospital.hospital_id %}" class="btn btn-delete">Delete</a>
+                        <a href="{% url 'hospitalinfo:update_hospital' hospital.hospital_id %}" class="btn btn-delete">Update</a>
+                        <a href="{% url 'hospitalinfo:delete_hospital' hospital.hospital_id %}" class="btn btn-delete">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}

@@ -62,17 +62,11 @@ class Appointment(models.Model):
     status = models.CharField(max_length=50)  # e.g. "Scheduled", "Completed", "Cancelled"
     notes = models.TextField()
 
+class Specialty(models.Model):
+	specialty_id = models.AutoField(primary_key=True)
+	name = models.CharField(max_length=250)
 
+class DoctorSpecialty(models.Model):
+	doctor = models.ForeignKey(Doctor,on_delete=models.CASCADE)
+	specialty = models.ForeignKey(Specialty,on_delete=models.CASCADE)
 
-class Patient(models.Model):
-	patient_id = models.AutoField(primary_key=True)
-	name = models.CharField(max_length = 100)
-	gender = models.CharField(max_length = 25)
-	dob = models.DateField()
-	email = models.EmailField()
-	password_hash = models.TextField()	
-	phone = models.CharField(max_length=15)
-	address = models.TextField()
-
-
-# hi
