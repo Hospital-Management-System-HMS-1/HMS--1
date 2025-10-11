@@ -36,6 +36,7 @@ def update_hospital(request,hospital_id):
 def delete_hospital(request,hospital_id):
     hospital=Hospital.objects.get(pk=hospital_id)
     hospital.delete()
+<<<<<<< HEAD
     return redirect('hospitalinfo:hospital_list')
 
 # Department views
@@ -70,3 +71,18 @@ def delete_depart(request,dept_id):
     depart=Department.objects.get(pk=dept_id)
     depart.delete()
     return redirect('hospitalinfo:depart_list')
+=======
+    return redirect(request,'hospitalinfo:hospital_list')
+
+
+def update_hospital(request, hospital_id):
+    hospital = Hospital.objects.get(pk=hospital_id)
+    if request.method == 'POST':
+        form = HospitalForm(request.POST, instance=hospital)
+        if form.is_valid():
+            form.save()
+            return redirect('hospitalinfo:hospital_list')
+    else:
+        form = HospitalForm(instance=hospital)
+    return render(request, 'update_hospital.html', {'form': form})
+>>>>>>> 30982e75f4c9f975552e0f07d6aab6228eaa6b44
