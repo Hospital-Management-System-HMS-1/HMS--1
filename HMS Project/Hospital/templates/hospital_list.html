@@ -157,18 +157,12 @@
                         <a href="{% url 'hospitalinfo:update_hospital' hospital.hospital_id %}" class="btn btn-edit">Update</a>
                     </td>
                     <td>
-<<<<<<< HEAD
-                        <a href="{% url 'hospitalinfo:update_hospital' hospital.hospital_id %}" class="btn btn-delete">Update</a>
                         <a href="{% url 'hospitalinfo:delete_hospital' hospital.hospital_id %}" class="btn btn-delete">Delete</a>
-=======
-                        <a href="{% url 'hospitalinfo:delete' hospital.hospital_id %}" class="btn btn-delete">Delete</a>
->>>>>>> 30982e75f4c9f975552e0f07d6aab6228eaa6b44
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
-        </table>
-       
+        </table>      
         {% endif %}
     </div>
 </body>
