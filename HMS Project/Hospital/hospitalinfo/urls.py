@@ -19,5 +19,11 @@ urlpatterns = [
     path('doctor_list/', doctor_list, name='doctor_list'),          
     path('add_doctor/', add_doctor, name='add_doctor'),             
     path('update_doctor/<int:doctor_id>/', update_doctor, name='update_doctor'),
-    path('delete_doctor/<int:doctor_id>/', delete_doctor, name='delete_doctor'),  
+    path('delete_doctor/<int:doctor_id>/', delete_doctor, name='delete_doctor'), 
+
+    path('appointment_list/', appointment_list, name='appointment_list'),
+    path('add_appointment/', add_appointment, name='add_appointment'),
+    path('update_appointment/<int:appointment_id>/', update_appointment, name='update_appointment'),
+    path('delete_appointment/<int:appointment_id>/',  delete_appointment, name='delete_appointment'),
+
 ]

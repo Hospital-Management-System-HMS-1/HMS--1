@@ -47,11 +47,11 @@ class Appointment(models.Model):
     status = models.CharField(max_length=50)
     notes = models.TextField()
 
-class Specialty(models.Model):
+class Specialist(models.Model):
 	specialty_id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=250)
 
-class DoctorSpecialty(models.Model):
+class DoctorSpecialist(models.Model):
 	doctor = models.ForeignKey(Doctor,on_delete=models.CASCADE)
-	specialty = models.ForeignKey(Specialty,on_delete=models.CASCADE)
+	specialty = models.ForeignKey(Specialist,on_delete=models.CASCADE)
 
