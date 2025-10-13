@@ -28,16 +28,17 @@ def update_hospital(request,hospital_id):
         form=HospitalForm(instance=hospital)
     return render(request,'update_hospital.html',{'form': form})
 
-
-#delete hospital
 def delete_hospital(request,hospital_id):
     hospital=Hospital.objects.get(pk=hospital_id)
     hospital.delete()
 
     return redirect('hospitalinfo:hospital_list')
 
-# Department views
-# Create (Add Department)
+
+def depart_list(request):
+    departments = Department.objects.all()
+    return render(request, 'depart_list.html', {'departments': departments})
+
 def add_department(request):
     if request.method == 'POST':
         form = DepartmentForm(request.POST)
@@ -47,11 +48,6 @@ def add_department(request):
     else:
         form = DepartmentForm()
     return render(request, 'add_depart.html', {'form': form})
-
-def depart_list(request):
-    departments = Department.objects.all()
-    return render(request, 'depart_list.html', {'departments': departments})
-
 
 def update_depart(request,dept_id):
     depart=Department.objects.get(pk=dept_id)
@@ -69,30 +65,35 @@ def delete_depart(request,dept_id):
     depart.delete()
     return redirect('hospitalinfo:depart_list')
 
-
-def update_hospital(request, hospital_id):
-    hospital = Hospital.objects.get(pk=hospital_id)
-    if request.method == 'POST':
-        form = HospitalForm(request.POST, instance=hospital)
-        if form.is_valid():
-            form.save()
-            return redirect('hospitalinfo:hospital_list')
-    else:
-        form = HospitalForm(instance=hospital)
-    return render(request, 'update_hospital.html', {'form': form})
-
-
-
 def doctor_list(request):
-    doctor = doctor.objects.all()
-    return render(request)
+    doctors = Doctor.objects.all()
+    return render(request, 'doctor_list.html', {'doctors': doctors})
 
 def add_doctor(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = DoctorForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('hospitalinfo:doctor_list') 
+            return redirect('hospitalinfo:doctor_list')
     else:
         form = DoctorForm()
-    return render(request,'add_doctor.html',{'form':form})
+    return render(request, 'add_doctor.html', {'form': form})
+
+def update_doctor(request, doctor_id):
+    doctor = doctor.objects.get(Doctor, pk=doctor_id)
+    if request.method == 'POST':
+        form = DoctorForm(request.POST, instance=doctor)
+        if form.is_valid():
+            form.save()
+            return redirect('hospitalinfo:doctor_list')
+    else:
+        form = DoctorForm(instance=doctor)
+    return render(request, 'update_doctor.html', {'form': form})
+
+def delete_doctor(request, doctor_id):
+    doctor =doctor.objects.get(Doctor, pk=doctor_id)
+    doctor.delete()
+    return redirect(request,'hospitalinfo:doctor_list')
+
+def appoinment(request):
+    if request.method == 'POST'

@@ -32,7 +32,6 @@
       color: #007bff;
     }
 
-    /* Style all input fields and textarea */
     .form-field {
       margin-bottom: 15px;
       display: flex;
@@ -95,8 +94,6 @@
   <h2>Add Hospital</h2>
   <form method="POST">
     {% csrf_token %}
-    
-    <!-- Iterate over form fields to apply custom styling -->
     {% for field in form %}
       <div class="form-field">
         {{ field.label_tag }}
@@ -106,7 +103,6 @@
         {% endif %}
       </div>
     {% endfor %}
-    
     <button type="submit">Save</button>
   </form>
   <a
