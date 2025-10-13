@@ -15,10 +15,4 @@ urlpatterns = [
     path('update_depart/<int:dept_id>/',update_depart,name='update_depart'),
     path('delete_depart/<int:dept_id>/',delete_depart,name='delete_depart'),
 
-
-    path('hospital_list/', hospital_list, name='hospital_list'),
-    path('add/', add_hospital, name='add_hospital'),
-    path('delete/<int:hospital_id>/', delete_hospital, name='delete'),
-    path('update/<int:hospital_id>/', update_hospital, name='update_hospital'),
-
 ]
