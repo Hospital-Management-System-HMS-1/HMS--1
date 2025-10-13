@@ -32,7 +32,6 @@ def delete_hospital(request, hospital_id):
     hospital.delete()
     return redirect('hospitalinfo:hospital_list')
 
-# ------------------- Department Views -------------------
 def depart_list(request):
     departments = Department.objects.all()
     return render(request, 'hospitalinfo/depart_list.html', {'departments': departments})
@@ -63,7 +62,6 @@ def delete_depart(request, dept_id):
     depart.delete()
     return redirect('hospitalinfo:depart_list')
 
-# ------------------- Doctor Views -------------------
 def doctor_list(request):
     doctors = Doctor.objects.all()
     return render(request, 'hospitalinfo/doctor_list.html', {'doctors': doctors})
@@ -94,7 +92,6 @@ def delete_doctor(request, doctor_id):
     doctor.delete()
     return redirect('hospitalinfo:doctor_list')
 
-# ------------------- Appointment Views -------------------
 def appointment_list(request):
     appointments = Appointment.objects.all()
     return render(request, 'hospitalinfo/appointment_list.html', {'appointments': appointments})
@@ -124,3 +121,4 @@ def delete_appointment(request, appointment_id):
     appointment = get_object_or_404(Appointment, pk=appointment_id)
     appointment.delete()
     return redirect('hospitalinfo:appointment_list')
+
