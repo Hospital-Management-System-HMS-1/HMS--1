@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
 
-
-# adding
 def add_hospital(request):
     if request.method == 'POST':
         form = HospitalForm(request.POST)
@@ -15,7 +13,6 @@ def add_hospital(request):
     return render(request, 'add_hospital.html', {'form': form})
 
 
-#hosipal list
 def hospital_list(request):
     hospital_L=Hospital.objects.all()
     return render(request,'hospital_list.html',{'hospitals': hospital_L})
@@ -73,7 +70,6 @@ def delete_depart(request,dept_id):
     return redirect('hospitalinfo:depart_list')
 
 
-
 def update_hospital(request, hospital_id):
     hospital = Hospital.objects.get(pk=hospital_id)
     if request.method == 'POST':
@@ -86,3 +82,17 @@ def update_hospital(request, hospital_id):
     return render(request, 'update_hospital.html', {'form': form})
 
 
+
+def doctor_list(request):
+    doctor = doctor.objects.all()
+    return render(request)
+
+def add_doctor(request):
+    if request.method == "POST":
+        form = DoctorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('hospitalinfo:doctor_list') 
+    else:
+        form = DoctorForm()
+    return render(request,'add_doctor.html',{'form':form})
