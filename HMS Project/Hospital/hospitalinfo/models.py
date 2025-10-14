@@ -35,7 +35,6 @@ class Patient(models.Model):
 	gender = models.CharField(max_length = 25)
 	dob = models.DateField()
 	email = models.EmailField()
-	password_hash = models.TextField()	
 	phone = models.CharField(max_length=15)
 	address = models.TextField()
 
@@ -51,7 +50,7 @@ class Specialist(models.Model):
 	specialty_id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=250)
 
-class DoctorSpecialist(models.Model):
+class Doctorspecialty(models.Model):
 	doctor = models.ForeignKey(Doctor,on_delete=models.CASCADE)
 	specialty = models.ForeignKey(Specialist,on_delete=models.CASCADE)
 

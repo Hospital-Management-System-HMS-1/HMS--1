@@ -20,3 +20,18 @@ class AppointmentForm(forms.ModelForm):
     class Meta:
         model=Appointment
         fields='__all__'
+
+class PatientForm(forms.ModelForm):
+    class Meta:
+        model=Doctor
+        fields='__all__'    
+
+class SpecialistForm(forms.ModelForm):
+    class Meta:
+        model=Doctor
+        fields='__all__' 
+
+class DoctorSpecialtyForm(forms.ModelForm):
+    class Meta:
+        model=Doctor
+        fields='__all__'
