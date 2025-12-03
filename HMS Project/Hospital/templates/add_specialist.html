@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add DoctorSpecialist</title>
+  <title>Add Specialist</title>
   
   <style>
     body {
@@ -91,7 +91,7 @@
 <body>
 
 <div class="container">
-  <h2>Add Doctor Specialist</h2>
+  <h2>Add Specialist</h2>
   <form method="POST">
     {% csrf_token %}
     {% for field in form %}
@@ -105,4 +105,8 @@
     {% endfor %}
     <button type="submit">Save</button>
   </form>
-  <a
+  <a href="{% url 'hospitalinfo:specialist_list' %}" class="back-link">← Back to Specialist List</a>
+</div>
+
+</body>
+</html>

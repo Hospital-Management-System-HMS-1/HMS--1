@@ -1,168 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appointment List</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-        }
+{% extends "base.html" %}
+{% block content %}
 
-        body {
-            background: #f4f7f8;
-            padding: 30px;
-        }
+<h2 class="mb-4 fw-bold">Appointment List</h2>
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
+<a href="{% url 'hospitalinfo:add_appointment' %}" class="btn btn-success mb-3">
+    Add Appointment
+</a>
 
-        .btn {
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: 0.3s;
-        }
+<table class="table table-bordered table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th>ID</th>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
 
-        .btn-add {
-            background-color: #28a745;
-            color: white;
-            margin-bottom: 15px;
-            display: inline-block;
-        }
+    <tbody>
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment.appointmentid }}</td>
+            <td>{{ appointment.patient.name }}</td>
+            <td>{{ appointment.doctor.name }}</td>
+            <td>{{ appointment.appointmentdate }}</td>
+            <td>{{ appointment.status }}</td>
+            <td>{{ appointment.notes }}</td>
 
-        .btn-add:hover {
-            background-color: #218838;
-        }
+            <td>
+                <a href="{% url 'hospitalinfo:update_appointment' appointment.appointmentid %}"
+                   class="btn btn-primary btn-sm">Update</a>
 
-        .btn-update {
-            background-color: #007bff;
-            color: white;
-            margin-right: 5px;
-        }
-
-        .btn-update:hover {
-            background-color: #0069d9;
-        }
-
-        .btn-delete {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-delete:hover {
-            background-color: #c82333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        table th, table td {
-            padding: 12px 15px;
-            text-align: left;
-        }
-
-        table th {
-            background-color: #007bff;
-            color: white;
-            font-weight: 600;
-        }
-
-        table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        table tr:hover {
-            background-color: #e9f5ff;
-            cursor: pointer;
-        }
-
-        @media screen and (max-width: 768px) {
-            table, thead, tbody, th, td, tr {
-                display: block;
-            }
-
-            table tr {
-                margin-bottom: 15px;
-                border-radius: 8px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            }
-
-            table td {
-                text-align: right;
-                padding-left: 50%;
-                position: relative;
-            }
-
-            table td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 15px;
-                width: 45%;
-                font-weight: bold;
-                text-align: left;
-            }
-
-            table th {
-                display: none;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<h2>Appointment List</h2>
-
-<a href="{% url 'hospitalinfo:add_appointment' %}" class="btn btn-add">Add Appointment</a>
-
-<table>
-  <thead>
-      <tr>
-        <th>ID</th>
-        <th>Patient Name</th>
-        <th>Doctor</th>
-        <th>Department</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Actions</th>
-      </tr>
-  </thead>
-  <tbody>
-    {% for appointment in appointments %}
-    <tr>
-        <td data-label="ID">{{ appointment.appointment_id }}</td>
-        <td data-label="Patient Name">{{ appointment.patient_name }}</td>
-        <td data-label="Doctor">{{ appointment.doctor.name }}</td>
-        <td data-label="Department">{{ appointment.department.name }}</td>
-        <td data-label="Date">{{ appointment.date }}</td>
-        <td data-label="Time">{{ appointment.time }}</td>
-        <td data-label="Actions">
-            <a href="{% url 'hospitalinfo:update_appointment' appointment.appointment_id %}" class="btn btn-update">Update</a>
-            <a href="{% url 'hospitalinfo:delete_appointment' appointment.appointment_id %}" class="btn btn-delete" onclick="return confirmDelete()">Delete</a>
-        </td>
-    </tr>
-    {% endfor %}
-  </tbody>
+                <a href="{% url 'hospitalinfo:delete_appointment' appointment.appointmentid %}"
+                   class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
 </table>
 
-<script>
-    function confirmDelete() {
-        return confirm("Are you sure you want to delete this appointment?");
-    }
-</script>
-
-</body>
-</html>
+{% endblock %}

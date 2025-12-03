@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Appointment</title>  
+    <title>Add Appointment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: Roboto, sans-serif;
             background-color: #f4f7f8;
             display: flex;
             justify-content: center;
@@ -32,47 +32,28 @@
             margin-bottom: 5px;
             font-weight: 500;
         }
-        form input[type="text"],
+        form input,
         form textarea,
         form select {
             width: 100%;
-            padding: 10px 12px;
+            padding: 10px;
             margin-bottom: 15px;
-            border: 1px solid #ccc;
+            font-size: 15px;
             border-radius: 6px;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-        form input[type="text"]:focus,
-        form textarea:focus,
-        form select:focus {
-            border-color: #28a745;
-            outline: none;
+            border: 1px solid #ccc;
         }
         button {
             background-color: #28a745;
             color: white;
             padding: 10px 20px;
-            font-size: 16px;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            transition: 0.3s;
             width: 100%;
+            font-size: 16px;
         }
         button:hover {
             background-color: #218838;
-        }
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            color: #28a745;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .back-link:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
@@ -80,11 +61,24 @@
 <div class="container">
     <h2>Add Appointment</h2>
     <form method="POST">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Save</button>
+        {% csrf_token %}
+        <label>Patient Name</label>
+        <input type="text" name="patient_name" placeholder="Enter patient name" required>
+
+        <label>Doctor</label>
+        {{ form.doctor }}
+
+        <label>Appointment Date</label>
+        {{ form.appointmentdate }}
+
+        <label>Status</label>
+        {{ form.status }}
+
+        <label>Notes</label>
+        {{ form.notes }}
+
+        <button type="submit">Save</button>
     </form>
-    <a href="{% url 'hospitalinfo:appointment_list' %}" class="back-link">Back to Appointment List</a>
 </div>
 </body>
 </html>

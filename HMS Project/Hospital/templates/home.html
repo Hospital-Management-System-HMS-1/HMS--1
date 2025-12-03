@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+
+{% block title %}Home | CityCare Hospital{% endblock %}
+
+{% block extra_head %}
+<style>
+html, body {
+    overflow-x: hidden;
+    font-family: "Roboto", sans-serif;
+}
+
+.hero {
+    background: linear-gradient(135deg, #0d6efd, #0bb197);
+    color: #fff;
+    padding: 80px 0;
+}
+
+/* IMAGE FIX */
+.hero-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-img {
+    width: auto;
+    /* max-width: 40px; */
+    height: auto;
+    object-fit: cover;
+    border-radius: 22px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+
+.hero-btn {
+    padding: 12px 28px;
+    font-size: 1rem;
+    border-radius: 30px;
+}
+
+.stat-card {
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.section-title {
+    margin-bottom: 1.5rem;
+}
+
+.department-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(13,110,253,0.08);
+    color: #0d6efd;
+    margin-bottom: 12px;
+}
+
+.footer {
+    padding: 30px 0;
+    background: #0f172a;
+    color: #9ca3af;
+}
+
+@media (max-width: 767px) {
+    .hero {
+        text-align: center;
+    }
+
+    .hero-img {
+        max-width: 320px;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <!-- IMAGE ON LEFT -->
+            <div class="col-lg-6 hero-img-container">
+                <img src="https://images.pexels.com/photos/3279207/pexels-photo-3279207.jpeg"
+                     alt="Hospital" class="hero-img">
+            </div>
+
+            <!-- TEXT ON RIGHT -->
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold mb-3">Trusted Care For Your Family</h1>
+
+                <p class="lead mb-4">
+                    Multi-specialty hospital with experienced doctors, modern equipment 
+                    and a dedicated emergency team.
+                </p>
+
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <a href="{% if user.is_authenticated %}{% url 'hospitalinfo:add_appointment' %}
+                    {% else %}{% url 'HospitalLogin:login' %}?next={% url 'hospitalinfo:add_appointment' %}
+                    {% endif %}" class="btn btn-light text-primary hero-btn">
+                        Book Appointment
+                    </a>
+
+                    <a href="#departments" class="btn btn-outline-light hero-btn">
+                        View Departments
+                    </a>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-4">
+                        <div class="bg-white text-dark text-center py-3 px-2 stat-card">
+                            <div class="fw-bold fs-5">50+</div>
+                            <div class="text-muted small">Doctors</div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="bg-white text-dark text-center py-3 px-2 stat-card">
+                            <div class="fw-bold fs-5">20K+</div>
+                            <div class="text-muted small">Patients</div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="bg-white text-dark text-center py-3 px-2 stat-card">
+                            <div class="fw-bold fs-5">24/7</div>
+                            <div class="text-muted small">Emergency</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- DEPARTMENTS -->
+<section id="departments" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="h3 section-title">Our Key Departments</h2>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded-3 shadow-sm h-100">
+                    <div class="department-icon"><span class="fw-bold">C</span></div>
+                    <h5 class="mb-1">Cardiology</h5>
+                    <p class="text-muted small mb-0">
+                        Advanced cardiac care, angiography, angioplasty, emergency care.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded-3 shadow-sm h-100">
+                    <div class="department-icon"><span class="fw-bold">O</span></div>
+                    <h5 class="mb-1">Orthopedics</h5>
+                    <p class="text-muted small mb-0">
+                        Joint replacement, fractures, sports injury care.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded-3 shadow-sm h-100">
+                    <div the department-icon><span class="fw-bold">N</span></div>
+                    <h5 class="mb-1">Neurology</h5>
+                    <p class="text-muted small mb-0">
+                        Stroke care, epilepsy clinic, full neuro diagnostics.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-5">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-6">
+                <h2 class="h3 mb-3">Why Patients Choose Us</h2>
+
+                <p class="text-muted">
+                    CityCare Hospital combines highly experienced doctors, modern ICU, 
+                    advanced surgical theatres, and a patient-first nursing team.
+                </p>
+
+                <ul class="list-unstyled mt-3">
+                    <li class="mb-2">• Online reports & appointment tracking</li>
+                    <li class="mb-2">• Cashless insurance support</li>
+                    <li class="mb-2">• 24×7 emergency & pharmacy</li>
+                </ul>
+            </div>
+
+            <div class="col-md-6">
+                <div class="p-4 bg-light rounded-3">
+                    <h5 class="mb-3">Need an urgent appointment?</h5>
+                    <p class="text-muted small mb-3">
+                        Login or create a free account and book a specialist instantly.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{% if user.is_authenticated %}
+                                {% url 'hospitalinfo:add_appointment' %}
+                                {% else %}
+                                {% url 'HospitalLogin:login' %}?next={% url 'hospitalinfo:add_appointment' %}
+                                {% endif %}"
+                           class="btn btn-primary">Book Now</a>
+
+                        <a href="{% url 'HospitalLogin:login' %}" class="btn btn-outline-secondary">
+                            Login
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="row gy-3 align-items-center">
+            <div class="col-md-6 small">
+                © CityCare Hospital. All rights reserved.
+            </div>
+
+            <div class="col-md-6 text-md-end small">
+                Emergency: +91-98765-43210 • Email: info@citycarehospital.com
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}
